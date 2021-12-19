@@ -1,5 +1,10 @@
 package richieJmartDR.jmart_android.model;
-
+/**
+ *
+ *
+ * @author Richie Yoseph Wijaya
+ * @version preSBA
+ */
 public enum ProductCategory {
     BOOK,
     KITCHEN,

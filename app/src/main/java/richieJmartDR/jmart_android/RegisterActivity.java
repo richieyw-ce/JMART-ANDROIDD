@@ -19,7 +19,12 @@ import org.json.JSONObject;
 
 import richieJmartDR.jmart_android.request.LoginRequest;
 import richieJmartDR.jmart_android.request.RegisterRequest;
-
+/**
+ *
+ *
+ * @author Richie Yoseph Wijaya
+ * @version preSBA
+ */
 public class RegisterActivity extends AppCompatActivity {
     protected EditText name;
     protected EditText email;

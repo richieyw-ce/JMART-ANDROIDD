@@ -6,7 +6,12 @@
  */
 package richieJmartDR.jmart_android.request;
 
-
+/**
+ *
+ *
+ * @author Richie Yoseph Wijaya
+ * @version preSBA
+ */
 //import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;

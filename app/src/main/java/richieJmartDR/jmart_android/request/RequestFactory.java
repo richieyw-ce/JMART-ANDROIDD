@@ -12,7 +12,12 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ *
+ *
+ * @author Richie Yoseph Wijaya
+ * @version preSBA
+ */
 public class RequestFactory {
     static final String URL_FORMAT_ID = "http://10.0.2.2:6969/%s/%d";
     static final String URL_FORMAT_PAGE = "http://10.0.2.2:6969/%s/page?page=%s&pageSize=%s";

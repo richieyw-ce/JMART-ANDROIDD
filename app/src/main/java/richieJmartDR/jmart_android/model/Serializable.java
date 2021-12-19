@@ -1,5 +1,10 @@
 package richieJmartDR.jmart_android.model;
-
+/**
+ *
+ *
+ * @author Richie Yoseph Wijaya
+ * @version preSBA
+ */
 import java.util.HashMap;
 
 public class Serializable implements Comparable<Serializable>

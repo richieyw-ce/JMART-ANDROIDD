@@ -25,7 +25,12 @@ import org.json.JSONObject;
 
 import richieJmartDR.jmart_android.request.CreatePRequest;
 import richieJmartDR.jmart_android.request.RegisterRequest;
-
+/**
+ *
+ *
+ * @author Richie Yoseph Wijaya
+ * @version preSBA
+ */
 public class CreateProductActivity extends AppCompatActivity {
 
     @Override

@@ -17,7 +17,12 @@ import com.google.gson.Gson;
 
 import richieJmartDR.jmart_android.model.Account;
 import richieJmartDR.jmart_android.request.LoginRequest;
-
+/**
+ *
+ *
+ * @author Richie Yoseph Wijaya
+ * @version preSBA
+ */
 public class LoginActivity extends AppCompatActivity {
     protected EditText email;
     protected EditText password;

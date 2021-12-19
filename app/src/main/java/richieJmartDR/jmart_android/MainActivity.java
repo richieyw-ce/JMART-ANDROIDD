@@ -30,7 +30,12 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 
 import richieJmartDR.jmart_android.model.Product;
-
+/**
+ *
+ *
+ * @author Richie Yoseph Wijaya
+ * @version preSBA
+ */
 public class MainActivity extends AppCompatActivity {
     protected TextView hello;
     String searchQuery = "";

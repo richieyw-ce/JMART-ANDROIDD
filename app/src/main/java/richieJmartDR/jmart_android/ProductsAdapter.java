@@ -14,7 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import java.util.ArrayList;
 import richieJmartDR.jmart_android.model.Product;
-
+/**
+ *
+ *
+ * @author Richie Yoseph Wijaya
+ * @version preSBA
+ */
 public class ProductsAdapter extends ArrayAdapter<Product> {
     private int resourceLayout;
     private Context mContext;
