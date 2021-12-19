@@ -1,3 +1,10 @@
+/** About me page (Back end)
+ *
+ *
+ * @author Richie Yoseph Wijaya
+ * @version 19/12/2021
+ */
+
 package richieJmartDR.jmart_android;
 
 import androidx.annotation.RequiresApi;

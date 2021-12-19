@@ -11,10 +11,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,6 +34,30 @@ import richieJmartDR.jmart_android.model.Product;
 public class MainActivity extends AppCompatActivity {
     protected TextView hello;
     String searchQuery = "";
+    String[] cat = {
+            "BOOK",
+            "KITCHEN",
+            "ELECTRONIC",
+            "FASHION",
+            "GAMING",
+            "GADGET",
+            "MOTHERCARE",
+            "COSMETICS",
+            "HEALTHCARE",
+            "FURNITURE",
+            "JEWELRY",
+            "TOYS",
+            "FNB",
+            "STATIONERY",
+            "SPORTS",
+            "AUTOMOTIVE",
+            "PETCARE",
+            "ART_CRAFT",
+            "CARPENTRY",
+            "MISCELLANEOUS",
+            "PROPERTY",
+            "TRAVEL",
+            "WEDDING"};
 
     Gson gson = new Gson();
 
@@ -54,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         Button goButton = findViewById(R.id.button9);
         EditText lowPrice = findViewById(R.id.editTextTextPersonName11);
         EditText highPrice = findViewById(R.id.editTextTextPersonName13);
+        Spinner category = findViewById(R.id.spinner3);
 
         prevButton.setOnClickListener(view->{
             Integer pageNumber_ = Integer.valueOf(pageNumber.getText().toString());
@@ -104,6 +132,18 @@ public class MainActivity extends AppCompatActivity {
         EditText searchText = findViewById(R.id.editTextTextPersonName10);
         Button applyButton = findViewById(R.id.button10);
 
+        ArrayAdapter ad
+                = new ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                cat);
+
+        ad.setDropDownViewResource(
+                android.R.layout
+                        .simple_spinner_dropdown_item);
+
+        category.setAdapter(ad);
+
         applyButton.setOnClickListener(view->{
             searchQuery = searchText.getText().toString();
         });
@@ -139,6 +179,17 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    public void onItemSelected(View arg1,
+                               int position,
+                               long id)
+    {
+
+        Toast.makeText(getApplicationContext(),
+                cat[position],
+                Toast.LENGTH_LONG)
+                .show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
@@ -146,6 +197,12 @@ public class MainActivity extends AppCompatActivity {
         if (itemId == R.id.about) {
             Intent aboutMe = new Intent(this, AboutMeActivity.class);
             this.startActivity(aboutMe);
+            return true;
+        }
+
+        if (itemId == R.id.createP) {
+            Intent createProduct = new Intent(this, CreateProductActivity.class);
+            this.startActivity(createProduct);
             return true;
         }
 

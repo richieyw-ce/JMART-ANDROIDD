@@ -18,32 +18,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Name"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Weight" />
+        android:hint="Weight"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editTextTextPersonName4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Price" />
+        android:hint="Price"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editTextTextPersonName5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Discount" />
+        android:hint="Discount"
+        android:inputType="textPersonName" />
 
     <LinearLayout
         android:layout_width="wrap_content"
