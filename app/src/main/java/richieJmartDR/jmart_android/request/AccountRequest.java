@@ -5,6 +5,22 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
 public class AccountRequest{
+    public static StringRequest topUp(
+            int accountId,
+            String balance,
+            Response.Listener<String> listener,
+            Response.ErrorListener errorListener
+    ) {
+        return new StringRequest(
+                Request.Method.POST,
+                String.format(
+                        "http://10.0.2.2:6969/account/%d/topUp?balance=%s",
+                        accountId, balance
+                ),
+                listener,
+                errorListener
+        );
+    }
 
     public static StringRequest createStore(
             int accountId,

@@ -38,18 +38,13 @@
         android:id="@+id/productView"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:visibility="visible"
+        tools:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </ListView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,8 +68,9 @@
                     android:layout_width="157dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:hint="Page"
                     android:inputType="textPersonName"
-                    android:text="Page" />
+                    android:text="0" />
 
                 <Button
                     android:id="@+id/button9"
@@ -82,6 +78,13 @@
                     android:layout_height="48dp"
                     android:text="GO" />
             </LinearLayout>
+
+            <ListView
+                android:id="@+id/productsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
 
         </LinearLayout>
 
@@ -91,7 +94,8 @@
         android:id="@+id/filterView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -103,8 +107,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:hint="Name"
+                android:inputType="textPersonName" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,8 +121,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Lowest Proce" />
+                    android:hint="Lowest Price"
+                    android:inputType="textPersonName" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -133,8 +137,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Highest Price" />
+                    android:hint="Highest Price"
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -171,7 +175,7 @@
 
                 <TextView
                     android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
+                    android:layout_width="221dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Product Category" />

@@ -1,9 +1,10 @@
 package richieJmartDR.jmart_android;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,15 +17,17 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import richieJmartDR.jmart_android.model.Account;
 import richieJmartDR.jmart_android.model.Store;
 import richieJmartDR.jmart_android.request.AccountRequest;
-import richieJmartDR.jmart_android.request.LoginRequest;
 
 public class AboutMeActivity extends AppCompatActivity {
 
     Gson gson = new Gson();
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,14 +49,56 @@ public class AboutMeActivity extends AppCompatActivity {
         TextView phoneNumberStore = findViewById(R.id.textView11);
         CardView registerS = findViewById(R.id.registerStore);
         CardView registeredS = findViewById(R.id.registeredStore);
-
         register.setVisibility(View.GONE);
         registerS.setVisibility(View.GONE);
         registeredS.setVisibility(View.GONE);
 
+        Account account_ = LoginActivity.getLoggedAccount();
+        Store store_ = account_.store;
+
+        name.setText(account_.name);
+
+        AtomicReference<Double> balance_ = new AtomicReference<>(account_.balance);
+        balance.setText(String.format("%.2f", balance_.get()));
+
+        EditText topUpInput = findViewById(R.id.topUpInput);
+        Button topUpButton = findViewById(R.id.topUpButton);
+
+        topUpButton.setOnClickListener(view ->{
+            try {
+                Double topUpNumber = Double.valueOf(topUpInput.getText().toString());
+                RequestQueue q = Volley.newRequestQueue(getApplicationContext());
+                StringRequest topUpAction = AccountRequest.topUp(
+                        account_.id,
+                        topUpNumber.toString(),
+                        response -> {
+                            if (response.equals("true")){
+                                balance_.updateAndGet(v -> v + topUpNumber);
+                                balance.setText(String.format("%.2f", balance_.get()));
+                            }
+                        },
+                        error -> {
+                            Toast.makeText(getApplicationContext(), "Top up failed", Toast.LENGTH_SHORT).show();
+                        }
+                );
+                q.add(topUpAction);
+            } catch (Exception e) {
+
+            }
+        });
+
+
         if(LoginActivity.getLoggedAccount().store == null){
             register.setVisibility(View.VISIBLE);
+        } else {
+            registeredS.setVisibility(View.VISIBLE);
+            nameStore.setText(store_.name);
+            addressStore.setText(store_.address);
+            phoneNumberStore.setText(store_.phoneNumber);
+            registeredS.setVisibility(View.VISIBLE);
         }
+
+
 
         register.setOnClickListener( view -> {
             registerS.setVisibility(View.VISIBLE);

@@ -31,15 +31,15 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/topUpInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Top Up Amount" />
+            android:hint="Top Up Amount"
+            android:inputType="number" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/topUpButton"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:text="TOP UP" />

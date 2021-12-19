@@ -7,15 +7,32 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+
+import richieJmartDR.jmart_android.model.Product;
 
 public class MainActivity extends AppCompatActivity {
     protected TextView hello;
+    String searchQuery = "";
+
+    Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +46,67 @@ public class MainActivity extends AppCompatActivity {
         TabLayout mainTabs = findViewById(R.id.mainTabs);
         CardView productView = findViewById(R.id.productView);
         CardView filterView = findViewById(R.id.filterView);
+
+        /* Product View */
+        Button prevButton = findViewById(R.id.button4);
+        Button nextButton = findViewById(R.id.button8);
+        EditText pageNumber = findViewById(R.id.editTextTextPersonName9);
+        Button goButton = findViewById(R.id.button9);
+        EditText lowPrice = findViewById(R.id.editTextTextPersonName11);
+        EditText highPrice = findViewById(R.id.editTextTextPersonName13);
+
+        prevButton.setOnClickListener(view->{
+            Integer pageNumber_ = Integer.valueOf(pageNumber.getText().toString());
+            if (pageNumber_ <= 0){
+                pageNumber_ = 0;
+                pageNumber.setText(String.format("%d", pageNumber_));
+            }else {
+                pageNumber.setText(String.format("%d", pageNumber_ - 1));
+            }
+        });
+
+        nextButton.setOnClickListener(view->{
+            Integer pageNumber_ = Integer.valueOf(pageNumber.getText().toString());
+            pageNumber.setText(String.format("%d", pageNumber_+1));
+        });
+
+        goButton.setOnClickListener(view->{
+            Integer pageNumber_ = Integer.valueOf(pageNumber.getText().toString());
+            if (pageNumber_ <= 0) {
+                pageNumber_ = 0;
+                pageNumber.setText(String.format("%d", pageNumber_));
+            }
+
+            Integer minPrice = Integer.valueOf(lowPrice.getText().toString());
+            Integer maxPrice = Integer.valueOf(highPrice.getText().toString());
+
+            StringRequest products = new StringRequest(
+                    Request.Method.GET,
+                        String.format(
+                                "http://10.0.2.2:6969/Product/getFiltered?page=%d&pageSize=10&search=%s&category=FNB&minPrice=%d&maxPrice=%d"
+                                ,pageNumber_, searchQuery, minPrice, maxPrice
+                        ),
+                    resp->{
+                        ArrayList<Product> products_ = gson.fromJson(resp, new TypeToken<ArrayList<Product>>(){}.getType());
+                        ListView list = findViewById(R.id.productsList);
+                        ProductsAdapter customAdapter = new ProductsAdapter(this, R.layout.row_product_item, products_);
+                        list.setAdapter(customAdapter);
+                    },
+                    err->{
+                        Log.e("product", err.toString());
+                    }
+            );
+            RequestQueue q = Volley.newRequestQueue(getApplicationContext());
+            q.add(products);
+        });
+
+        /* Filter View */
+        EditText searchText = findViewById(R.id.editTextTextPersonName10);
+        Button applyButton = findViewById(R.id.button10);
+
+        applyButton.setOnClickListener(view->{
+            searchQuery = searchText.getText().toString();
+        });
 
         mainTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -52,9 +130,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {}
         });
-
-//        hello = findViewById(R.id.MainHello);
-//        hello.setText("Hello " + LoginActivity.getLoggedAccount());
     }
 
     @Override
